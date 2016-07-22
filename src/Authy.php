@@ -14,7 +14,7 @@ class Authy
     /**
      * @var array
      */
-    private $parameters;
+    protected $parameters;
 
     /**
      * Authy constructor.
@@ -26,7 +26,6 @@ class Authy
     {
         $this->initialize($parameters);
         $this->httpClient = $httpClient;
-        $this->parameters = $parameters;
     }
 
     public function initialize(array $parameters = array())
@@ -35,7 +34,6 @@ class Authy
             'apiKey' => '',
             'sandbox' => true,
         ), $parameters);
-        exit();
     }
 
     /**

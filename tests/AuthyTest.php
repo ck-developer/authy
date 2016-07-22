@@ -4,7 +4,7 @@ namespace Authy\Test;
 
 use Authy\Authy;
 
-class RequestTest extends TestCase
+class AuthyTest extends TestCase
 {
     /**
      * @var \GuzzleHttp\Client $client
