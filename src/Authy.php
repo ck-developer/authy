@@ -11,10 +11,15 @@
 
 namespace Authy;
 
+use Authy\Message\AbstractRequest;
+use Authy\Message\AbstractResponse;
 use GuzzleHttp\Client;
 
 class Authy
 {
+    protected $liveEndpoint = 'https://api.authy.com/protected/json/';
+    protected $testEndpoint = 'https://sandbox-api.authy.com/protected/json/';
+
     /**
      * @var Client
      */
@@ -84,5 +89,50 @@ class Authy
     {
         $this->parameters['sandbox'] = $sandbox;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndpoint()
+    {
+        return $this->isSandbox() ? $this->testEndpoint : $this->liveEndpoint;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getHttpClient()
+    {
+        if ($this->httpClient) {
+            return $this->httpClient;
+        }
+
+        return $this->httpClient = new Client(array(
+            'base_uri' => $this->getEndpoint(),
+            'query'   => array('api_key' => $this->getApiKey()),
+            'timeout'  => 2.0,
+        ));
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return AbstractResponse
+     */
+    private function createRequest($class)
+    {
+        /** @var AbstractRequest $request */
+        $request = new $class($this->getHttpClient());
+
+        return $request->send();
+    }
+
+    /**
+     * @return \Authy\Message\AuthyDetails
+     */
+    public function details()
+    {
+        return $this->createRequest('\Authy\Message\AuthyDetailsRequest');
     }
 }

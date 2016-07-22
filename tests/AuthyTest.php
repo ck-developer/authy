@@ -12,14 +12,10 @@
 namespace Authy\Test;
 
 use Authy\Authy;
+use Authy\Message\AuthyDetailsResponse;
 
 class AuthyTest extends TestCase
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private $client;
-
     /**
      * @var Authy
      */
@@ -54,5 +50,41 @@ class AuthyTest extends TestCase
 
         $this->assertEquals('Bh83Lb93BsTsKbN', $this->authy->getApiKey());
         $this->assertTrue($this->authy->isSandbox());
+    }
+
+    public function testEndpoint()
+    {
+        $this->authy->setSandbox(true);
+        $this->assertEquals('https://sandbox-api.authy.com/protected/json/', $this->authy->getEndpoint());
+
+        $this->authy->setSandbox(false);
+        $this->assertEquals('https://api.authy.com/protected/json/', $this->authy->getEndpoint());
+    }
+
+    public function testHttpClient()
+    {
+        $this->assertInstanceOf('GuzzleHttp\Client', $this->authy->getHttpClient());
+
+        $authy = new Authy(array(), $this->getMockHttpClient());
+
+        $this->assertInstanceOf('GuzzleHttp\Client', $authy->getHttpClient());
+    }
+
+    public function testDetails()
+    {
+        $this->authy->setApiKey('0cd08abec2e9b9641e40e9470a7fc336');
+        $this->authy->setSandbox(true);
+
+        /** @var AuthyDetailsResponse $response */
+        $response = $this->authy->details();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertInternalType('string', $response->getMessage());
+        $this->assertInternalType('string', $response->getName());
+    }
+
+    protected function getMockHttpClient()
+    {
+        return new \GuzzleHttp\Client();
     }
 }
