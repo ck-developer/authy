@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * A php library for using the Authy API.
+ *
+ * @link      https://github.com/ck-developer/authy
+ * @package   authy
+ * @license   MIT
+ * @copyright Copyright (c) 2016 Claude Khedhiri <claude@khedhiri.com>
+ */
+
 namespace Authy;
 
 use GuzzleHttp\Client;
@@ -7,7 +16,7 @@ use GuzzleHttp\Client;
 class Authy
 {
     /**
-     * @var Client $httpClient
+     * @var Client
      */
     private $httpClient;
 
@@ -19,7 +28,7 @@ class Authy
     /**
      * Authy constructor.
      *
-     * @param array $parameters
+     * @param array       $parameters
      * @param Client|null $httpClient
      */
     public function __construct(array $parameters = array(), Client $httpClient = null)
@@ -37,9 +46,9 @@ class Authy
     }
 
     /**
-     * @return string
-     *
      * @throws \Exception
+     *
+     * @return string
      */
     public function getApiKey()
     {
@@ -59,7 +68,7 @@ class Authy
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSandbox()
     {
@@ -67,7 +76,7 @@ class Authy
     }
 
     /**
-     * @param boolean $sandbox
+     * @param bool $sandbox
      *
      * @return $this
      */
