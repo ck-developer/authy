@@ -11,10 +11,42 @@
 
 namespace Authy\Test;
 
+use Authy\Authy;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Authy
+     */
+    protected $authy;
+
+    public function setUp()
+    {
+        $this->authy = new Authy();
+    }
+
+    protected function mockResponse($path)
+    {
+        $response = $this->parseResponse($path);
+
+        $mock = new MockHandler([$response]);
+
+        $handler = HandlerStack::create($mock);
+
+        $this->authy->setHttpClient($this->getHttpClient(array('handler' => $handler)));
+
+        return $response;
+    }
+
+    protected function getHttpClient($options = array())
+    {
+        return new Client($options);
+    }
+
     private function parseResponse($path)
     {
         if (file_exists($path = __DIR__ . '/Mock/' . $path)) {

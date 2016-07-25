@@ -100,6 +100,27 @@ class Authy
     }
 
     /**
+     * @param $httpClient
+     *
+     * @return $this
+     */
+    public function setHttpClient($httpClient)
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+    
+    protected function getDefaultHttpClient()
+    {
+        return new Client(array(
+            'base_uri' => $this->getEndpoint(),
+            'query'   => array('api_key' => $this->getApiKey()),
+            'timeout'  => 2.0,
+        ));
+    }
+
+    /**
      * @return Client
      */
     public function getHttpClient()
@@ -108,11 +129,7 @@ class Authy
             return $this->httpClient;
         }
 
-        return $this->httpClient = new Client(array(
-            'base_uri' => $this->getEndpoint(),
-            'query'   => array('api_key' => $this->getApiKey()),
-            'timeout'  => 2.0,
-        ));
+        return $this->httpClient = $this->getDefaultHttpClient();
     }
 
     /**

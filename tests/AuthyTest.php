@@ -13,19 +13,12 @@ namespace Authy\Test;
 
 use Authy\Authy;
 use Authy\Message\AuthyDetailsResponse;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 
 class AuthyTest extends TestCase
 {
-    /**
-     * @var Authy
-     */
-    private $authy;
-
-    public function setUp()
-    {
-        $this->authy = new Authy();
-    }
-
     public function testConstruct()
     {
         $this->assertEmpty($this->authy->getApiKey());
@@ -64,27 +57,21 @@ class AuthyTest extends TestCase
     public function testHttpClient()
     {
         $this->assertInstanceOf('GuzzleHttp\Client', $this->authy->getHttpClient());
-
-        $authy = new Authy(array(), $this->getMockHttpClient());
-
-        $this->assertInstanceOf('GuzzleHttp\Client', $authy->getHttpClient());
     }
 
     public function testDetails()
     {
-        $this->authy->setApiKey('0cd08abec2e9b9641e40e9470a7fc336');
-        $this->authy->setSandbox(true);
+        $this->mockResponse('AuthyDetailsSuccess.txt');
 
         /** @var AuthyDetailsResponse $response */
         $response = $this->authy->details();
 
         $this->assertTrue($response->isSuccessful());
         $this->assertInternalType('string', $response->getMessage());
+        $this->assertInternalType('int', $response->getId());
         $this->assertInternalType('string', $response->getName());
-    }
-
-    protected function getMockHttpClient()
-    {
-        return new \GuzzleHttp\Client();
+        $this->assertInternalType('string', $response->getPlan());
+        $this->assertInternalType('bool', $response->isSmsEnabled());
+        $this->assertInternalType('bool', $response->isOneTouchEnabled());
     }
 }

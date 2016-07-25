@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx/1.4.6 (Ubuntu)
+Date: Mon, 25 Jul 2016 15:49:56 GMT
+Content-Type: application/json;charset=utf-8
+Content-Length: 157
+Connection: keep-alive
+Status: 200 OK
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubdomains
+
+{"app":{"name":"Sandbox App 6","plan":"starter","sms_enabled":false,"app_id":7,"onetouch_enabled":false},"message":"Application information.","success":true}
