@@ -71,4 +71,16 @@ class AuthyTest extends TestCase
         $this->assertInternalType('bool', $response->isSmsEnabled());
         $this->assertInternalType('bool', $response->isOneTouchEnabled());
     }
+
+    public function testStats()
+    {
+        $this->mockResponse('AuthyStatsSuccess.txt');
+
+        $response = $this->authy->stats();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertInternalType('string', $response->getMessage());
+        $this->assertInternalType('array', $response->getStats());
+        $this->assertInternalType('int', $response->getTotalUsers());
+    }
 }

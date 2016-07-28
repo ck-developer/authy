@@ -146,10 +146,18 @@ class Authy
     }
 
     /**
-     * @return \Authy\Message\AuthyDetails
+     * @return \Authy\Message\AuthyDetailsResponse
      */
     public function details()
     {
         return $this->createRequest('\Authy\Message\AuthyDetailsRequest');
+    }
+
+    /**
+     * @return \Authy\Message\AuthyStatsResponse
+     */
+    public function stats()
+    {
+        return $this->createRequest('\Authy\Message\AuthyStatsRequest');
     }
 }

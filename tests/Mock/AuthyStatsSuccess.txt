@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx/1.4.6 (Ubuntu)
+Date: Thu, 28 Jul 2016 16:07:55 GMT
+Content-Type: application/json;charset=utf-8
+Content-Length: 1509
+Connection: keep-alive
+Status: 200 OK
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubdomains
+
+{"stats":[{"sms_count":0,"calls_count":0,"users_count":3,"auths_count":0,"month":"August","api_calls_count":359,"year":2015},{"sms_count":0,"calls_count":0,"users_count":30,"auths_count":0,"month":"September","api_calls_count":757,"year":2015},{"sms_count":0,"calls_count":0,"users_count":28,"auths_count":0,"month":"October","api_calls_count":2350,"year":2015},{"sms_count":0,"calls_count":0,"users_count":13,"auths_count":0,"month":"November","api_calls_count":4454,"year":2015},{"sms_count":0,"calls_count":0,"users_count":9,"auths_count":0,"month":"December","api_calls_count":3380,"year":2015},{"sms_count":0,"calls_count":0,"users_count":5,"auths_count":0,"month":"January","api_calls_count":5614,"year":2016},{"sms_count":0,"calls_count":0,"users_count":23,"auths_count":0,"month":"February","api_calls_count":5773,"year":2016},{"sms_count":0,"calls_count":0,"users_count":6,"auths_count":0,"month":"March","api_calls_count":6162,"year":2016},{"sms_count":0,"calls_count":0,"users_count":17,"auths_count":0,"month":"April","api_calls_count":13515,"year":2016},{"sms_count":0,"calls_count":0,"users_count":1701,"auths_count":0,"month":"May","api_calls_count":15876,"year":2016},{"sms_count":0,"calls_count":0,"users_count":3116,"auths_count":0,"month":"June","api_calls_count":22875,"year":2016},{"sms_count":0,"calls_count":0,"users_count":1825,"auths_count":0,"month":"July","api_calls_count":15392,"year":2016}],"message":"Monthly statistics.","count":12,"total_users":9666,"app_id":7,"success":true}
