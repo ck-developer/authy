@@ -21,10 +21,15 @@ abstract class AbstractResponse
     protected $status;
 
     /**
-     * @var array
+     * @var array $data
      */
     protected $data;
 
+    /**
+     * AbstractResponse constructor.
+     * 
+     * @param ResponseInterface $response
+     */
     public function __construct(ResponseInterface $response)
     {
         $this->status = $response->getStatusCode();
