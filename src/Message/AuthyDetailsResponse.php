@@ -38,7 +38,7 @@ class AuthyDetailsResponse extends AbstractResponse
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
     public function isSmsEnabled()
     {
@@ -46,7 +46,7 @@ class AuthyDetailsResponse extends AbstractResponse
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
     public function isOneTouchEnabled()
     {

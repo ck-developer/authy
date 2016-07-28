@@ -21,7 +21,7 @@ abstract class AbstractResponse
     protected $status;
 
     /**
-     * @var array $data
+     * @var array
      */
     protected $data;
 

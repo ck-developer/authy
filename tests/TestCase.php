@@ -33,7 +33,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     {
         $response = $this->parseResponse($path);
 
-        $mock = new MockHandler([$response]);
+        $mock = new MockHandler(array($response));
 
         $handler = HandlerStack::create($mock);
 

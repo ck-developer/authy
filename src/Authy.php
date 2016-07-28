@@ -110,7 +110,7 @@ class Authy
 
         return $this;
     }
-    
+
     protected function getDefaultHttpClient()
     {
         return new Client(array(

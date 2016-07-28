@@ -13,9 +13,6 @@ namespace Authy\Test;
 
 use Authy\Authy;
 use Authy\Message\AuthyDetailsResponse;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 
 class AuthyTest extends TestCase
 {
